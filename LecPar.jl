@@ -51,6 +51,7 @@ module AAAPARLECJSON
         end
         numberEquip=length(dataEq)+numberEquip      # Conteo de equipos
         for j=1:length(dataEq)
+        if data["lPLModeler:Process"]["systems"][i]["equipments"][j]["name"][1] != '*'    
             va1=JSON.json(dataEq[j]["events"])
             if va1[1]=='{'          # Evalúa si el equipo tiene un solo evento para corregir bug provocado en el arhivo JSON
                 va1=string("[", va1,"]")
@@ -60,6 +61,7 @@ module AAAPARLECJSON
             end
             MaxEv=maximum([length(dataEv),MaxEv])       #máximo valor de eventos por equipo
             numberEvents=length(dataEv)+numberEvents    #Conteo número de eventos totales
+        end
         end
     end
 
@@ -84,9 +86,10 @@ module AAAPARLECJSON
         else
             dataEq=data["lPLModeler:Process"]["systems"][i]["equipments"]
         end
-
-
+     
+        
         for j=1:length(dataEq)      # Se recorre hasta el número de equipos de cada sistema
+         if data["lPLModeler:Process"]["systems"][i]["equipments"][j]["name"][1] !='*' 
             va1=JSON.json(dataEq[j]["events"])
             if va1[1]=='{'
                 va1=string("[", va1,"]")                # Corrección de bug
@@ -143,6 +146,7 @@ module AAAPARLECJSON
                 acu = acu + 4;      # Aumento del contador para asignar los parámetros de un nuevo evento.
             end
             acu = 1;          # Reinicio del acumulador para un nuevo equipo
+         end
         end
     end
 
@@ -160,6 +164,7 @@ module AAAPARLECJSON
             dataEq=data["lPLModeler:Process"]["systems"][i]["equipments"]
         end
         for j=1:length(dataEq)     #se recorre hasta el número de equipos de cada sistema
+         if data["lPLModeler:Process"]["systems"][i]["equipments"][j]["name"][1] != '*' 
             va1=JSON.json(dataEq[j]["events"])
             if va1[1]=='{'
                 va1=string("[", va1,"]")
@@ -215,6 +220,7 @@ module AAAPARLECJSON
                 #llenado de vector de costos de cada evento
             end
             acu=1; #reinicio de acumulador
+            end
         end
     end
     idsEv
@@ -236,6 +242,7 @@ module AAAPARLECJSON
             dataEq=data["lPLModeler:Process"]["systems"][i]["equipments"]
         end
         for j=1:length(dataEq)
+        if data["lPLModeler:Process"]["systems"][i]["equipments"][j]["name"][1]!='*' 
             va1=JSON.json(dataEq[j]["events"])
             if va1[1]=='{'
                 va1=string("[", va1,"]")
@@ -293,6 +300,7 @@ module AAAPARLECJSON
                 end
                 cont = cont +1
             end
+        end
         end
     end
 
