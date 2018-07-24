@@ -30,22 +30,22 @@ module AAACONFEV
                         dataEv = dataEq[j]["events"]
                     end
                     for k=1:length(dataEv)
-                        eventListConfig[cont,1] = occurrences[j,4*(k-1)+1]
-                        eventListConfig[cont,2] = Float64(occurrences[j,4*(k-1)+2])
-                        eventListConfig[cont,3] = Float64(occurrences[j,4*(k-1)+3])
-                        eventListConfig[cont,4] = Float64(occurrences[j,4*(k-1)+4])
-                        eventListConfig[cont,5] = durations[j,4*(k-1)+1]
-                        eventListConfig[cont,6] = Float64(durations[j,4*(k-1)+2])
-                        eventListConfig[cont,7] = Float64(durations[j,4*(k-1)+3])
-                        eventListConfig[cont,8] = Float64(durations[j,4*(k-1)+4])
-                        eventListConfig[cont,9] = Float64(costs[j,k])
-                        eventListConfig[cont,15] = Float64(cap[j,k])
+                        eventListConfig[cont,1] = cont
+                        eventListConfig[cont,2] = occurrences[j,4*(k-1)+1]
+                        eventListConfig[cont,3] = Float64(occurrences[j,4*(k-1)+2])
+                        eventListConfig[cont,4] = Float64(occurrences[j,4*(k-1)+3])
+                        eventListConfig[cont,5] = Float64(occurrences[j,4*(k-1)+4])
+                        eventListConfig[cont,6] = durations[j,4*(k-1)+1]
+                        eventListConfig[cont,7] = Float64(durations[j,4*(k-1)+2])
+                        eventListConfig[cont,8] = Float64(durations[j,4*(k-1)+3])
+                        eventListConfig[cont,9] = Float64(durations[j,4*(k-1)+4])
+                        eventListConfig[cont,10] = Float64(costs[j,k])
                         if dataEv[k]["xsi:type"] == "lPLModeler:Maintenance"
-                            eventListConfig[cont,10] = 2
+                            eventListConfig[cont,11] = 2
                         else
-                            eventListConfig[cont,10] = 1
+                            eventListConfig[cont,11] = 1
                         end
-                        eventListConfig[cont,11] = cont
+                        eventListConfig[cont,15] = Float64(cap[j,k])
                         eventListConfig[cont,13] = j
                         # La matriz se llenará a partir de los mantenimientos que tiene asociados cada falla
                         if dataEv[k]["xsi:type"] == "lPLModeler:Maintenance"
